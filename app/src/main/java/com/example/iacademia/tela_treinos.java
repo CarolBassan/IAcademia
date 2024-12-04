@@ -1,104 +1,78 @@
 package com.example.iacademia;
-import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONObject;
 
 public class tela_treinos extends AppCompatActivity {
 
-    CheckBox check_pizza, check_bebida;
-    RadioGroup radio_pizza, radio_entrega;
-    Spinner sp_pizza, sp_marcas;
-    EditText edit_endereco;
-    Button btEnviarPedido, btRetornar;
+    EditText etNomeExercicio, etGrupoMuscular, etSeries, etRepeticoes, etPeso;
+    Button btSalvarTreino, btRetornar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_pedidos);
+        setContentView(R.layout.activity_tela_treinos);
 
-        check_pizza = findViewById(R.id.cpizza);
-        radio_pizza = findViewById(R.id.rgtamanho);
-        sp_pizza = findViewById(R.id.spsabores);
-        check_bebida = findViewById(R.id.crefri);
-        sp_marcas = findViewById(R.id.spmarcas);
-        radio_entrega = findViewById(R.id.rgtele);
-        edit_endereco = findViewById(R.id.edtend);
-        btEnviarPedido = findViewById(R.id.button);
-        btRetornar = findViewById(R.id.button2);
+        etNomeExercicio = findViewById(R.id.etNomeExercicio);
+        etGrupoMuscular = findViewById(R.id.etGrupoMuscular);
+        etSeries = findViewById(R.id.etSeries);
+        etRepeticoes = findViewById(R.id.etRepeticoes);
+        etPeso = findViewById(R.id.etPeso);
+        btSalvarTreino = findViewById(R.id.btnSalvar);
+        btRetornar = findViewById(R.id.btnVoltar);
 
-        btEnviarPedido.setOnClickListener(view -> new EnviaJsonPost().execute());
-
+        btSalvarTreino.setOnClickListener(view -> new EnviaJsonPost().execute());
         btRetornar.setOnClickListener(view -> finish());
     }
 
-    private boolean isPizzaChecked() {
-        return check_pizza.isChecked();
-    }
-
-    private boolean isBebidaChecked() {
-        return check_bebida.isChecked();
-    }
-
-    private String getSelectedPizzaSize() {
-        int selectedId = radio_pizza.getCheckedRadioButtonId();
-        if (selectedId != -1) {
-            RadioButton selectedButton = findViewById(selectedId);
-            return selectedButton.getText().toString();
-        }
-        return "NA";
-    }
-
-    private String getSelectedDeliveryOption() {
-        int selectedId = radio_entrega.getCheckedRadioButtonId();
-        if (selectedId != -1) {
-            RadioButton selectedButton = findViewById(selectedId);
-            return selectedButton.getText().toString();
-        }
-        return "NA";
+    private boolean validaCampos() {
+        return !etNomeExercicio.getText().toString().isEmpty() &&
+                !etGrupoMuscular.getText().toString().isEmpty() &&
+                !etSeries.getText().toString().isEmpty() &&
+                !etRepeticoes.getText().toString().isEmpty() &&
+                !etPeso.getText().toString().isEmpty();
     }
 
     class EnviaJsonPost extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... voids) {
             try {
-                String url = "http://192.167.253.165/ifome/cadastra_pedido.php";
+                if (!validaCampos()) {
+                    return "Por favor, preencha todos os campos.";
+                }
+
+                String url = "http://192.167.253.165/academia/cadastra_treino.php";
                 JSONObject jsonValores = new JSONObject();
-                jsonValores.put("idusr", 1);
-                jsonValores.put("pizza", isPizzaChecked() ? 1 : 0);
-                jsonValores.put("tamanho", getSelectedPizzaSize());
-                jsonValores.put("sabor", sp_pizza.getSelectedItem().toString());
-                jsonValores.put("bebida", isBebidaChecked() ? 1 : 0);
-                jsonValores.put("desc_bebida", sp_marcas.getSelectedItem().toString());
-                jsonValores.put("tele", getSelectedDeliveryOption());
-                jsonValores.put("endereco", edit_endereco.getText().toString().isEmpty() ? "NA" : edit_endereco.getText().toString());
+                jsonValores.put("id_usuario", 1);
+                jsonValores.put("nome_exercicio", etNomeExercicio.getText().toString());
+                jsonValores.put("grupo_muscular", etGrupoMuscular.getText().toString());
+                jsonValores.put("series", Integer.parseInt(etSeries.getText().toString()));
+                jsonValores.put("repeticoes", Integer.parseInt(etRepeticoes.getText().toString()));
+                jsonValores.put("peso", Double.parseDouble(etPeso.getText().toString()));
 
                 conexaouniversal mandar = new conexaouniversal();
                 return mandar.postJSONObject(url, jsonValores);
 
             } catch (Exception e) {
                 e.printStackTrace();
-                return "Erro ao enviar pedido.";
+                return "Erro ao salvar treino.";
             }
         }
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (result != null && !result.equals("Erro ao enviar treino.")) {
-                Toast.makeText(tela_treinos.this, "Treino adicionado com sucesso!", Toast.LENGTH_SHORT).show();
+            if (result != null && !result.equals("Erro ao salvar treino.")) {
+                Toast.makeText(tela_treinos.this, "Treino salvo com sucesso!", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
-                Toast.makeText(tela_treinos.this, "Erro ao adicionar treino. Tente novamente.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(tela_treinos.this, result, Toast.LENGTH_SHORT).show();
             }
         }
     }

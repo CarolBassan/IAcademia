@@ -58,7 +58,7 @@ public class cadNovoUsuario extends AppCompatActivity {
         @Override
         protected String doInBackground(String... arg0) {
             try {
-                String url = "http://192.167.253.165/ifome/cadastra_usuario.php";
+                String url = "http://192.167.253.165/academia/cadastra_usuario.php";
                 JSONObject jsonValores = new JSONObject();
                 jsonValores.put("nome", usrtemp.getNome());
                 jsonValores.put("senha", usrtemp.getSenha());

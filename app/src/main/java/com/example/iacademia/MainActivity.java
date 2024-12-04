@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... arg0) {
             try {
-                String url = "http://192.167.253.165/ifome/consulta_login.php";
+                String url = "http://192.167.253.165/academia/consulta_login.php";
                 JSONObject jsonValores = new JSONObject();
                 jsonValores.put("login", edtlogin.getText().toString());
                 jsonValores.put("senha", edtsenha.getText().toString());
@@ -63,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
                         senha = jsonitem.optString("senha").toString();
                     }
                     if (edtlogin.getText().toString().equals(login) && edtsenha.getText().toString().equals(senha)) {
-                        Intent i = new Intent(getApplicationContext(), TelaPrincipal.class);
+                        Intent i = new Intent(getApplicationContext(), tela_principal.class);
                         startActivity(i);
                     } else {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(MainActivity.this, "Login ou senha incorretos!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this,"Login ou senha incorretos!" , Toast.LENGTH_SHORT).show();
                             }
                         });
                     }

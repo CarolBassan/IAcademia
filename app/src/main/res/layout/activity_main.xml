@@ -68,11 +68,11 @@
             android:id="@+id/btlogar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint="#ffffff"
             android:text="Entrar"
             android:textColor="#8d0000"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/linkCriaConta"

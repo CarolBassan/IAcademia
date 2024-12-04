@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class TelaPrincipal extends AppCompatActivity {
+public class tela_principal extends AppCompatActivity {
     Button btpedido, btsair;
 
     @Override
@@ -19,8 +19,8 @@ public class TelaPrincipal extends AppCompatActivity {
         btsair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-            }
+
+            };
         });
     }
 }

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/brackgroundacademia2"
     android:padding="8dp"
-    tools:context=".TelaPrincipal">
+    tools:context=".tela_principal">
 
     <ImageView
         android:id="@+id/imageViewLogo"
@@ -179,27 +179,31 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btpedido"
+        android:id="@+id/bttreinos"
+        android:text="Cadastrar seu treino"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="40sp"
+        android:layout_marginEnd="40sp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Cadastrar seu treino"
+        android:padding="6dp"
         android:textColor="#8d0000"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btsair"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40sp"
+        android:layout_marginEnd="40sp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#FFFFFF"
+        android:padding="6dp"
         android:text="Sair"
         android:textColor="#8d0000"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

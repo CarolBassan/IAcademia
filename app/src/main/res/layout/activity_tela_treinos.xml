@@ -1,168 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/brackgroundacademia2"
-    tools:context=".tela_treinos">
+    android:padding="16dp"
+    android:background="@drawable/backgroudacademia"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:weightSum="1">
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CADASTRAR TREINO"
+            android:paddingBottom="16dp"
+            android:text="Montar Treino"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:paddingBottom="16dp" />
-
-        <CheckBox
-            android:id="@+id/cpizza"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Braço"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
-
-        <RadioGroup
-            android:id="@+id/rgtamanho"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tamanho"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:paddingBottom="8dp" />
-
-            <RadioButton
-                android:id="@+id/rdpequeno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pequena"
-                android:textColor="#ffffff" />
-
-            <RadioButton
-                android:id="@+id/rdmedia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Média"
-                android:textColor="#ffffff" />
-
-            <RadioButton
-                android:id="@+id/rdgrande"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Grande"
-                android:textColor="#ffffff" />
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sabores"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:paddingTop="16dp" />
-
-        <Spinner
-            android:id="@+id/spsabores"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:entries="@array/sabores" />
-
-        <CheckBox
-            android:id="@+id/crefri"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bebida"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-
-        <Spinner
-            android:id="@+id/spmarcas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/bebidas"
-            android:padding="8dp" />
-
-        <RadioGroup
-            android:id="@+id/rgtele"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="16dp">
-
-            <RadioButton
-                android:id="@+id/rdbusca"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Entrega Local"
-                android:textColor="#ffffff" />
-
-            <RadioButton
-                android:id="@+id/rdtele"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tele Entrega"
-                android:textColor="#ffffff" />
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Endereço para entrega"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:paddingTop="8dp" />
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtend"
+            android:id="@+id/etNomeExercicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome do Exercício"
+            android:padding="12dp"
+            android:background="@drawable/custom_edittext"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etGrupoMuscular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_edittext"
-            android:padding="10dp"
-            android:hint="Digite seu endereço"
-            android:textColor="#000000"
+            android:hint="Grupo Muscular"
+            android:padding="12dp"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etSeries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número de Séries"
+            android:inputType="number"
+            android:padding="12dp"
+            android:background="@drawable/custom_edittext"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etRepeticoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número de Repetições"
+            android:inputType="number"
+            android:padding="12dp"
+            android:background="@drawable/custom_edittext"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etPeso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso (kg)"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:background="@drawable/custom_edittext"
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnSalvar"
+            android:text="Salvar Treino"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#ffffff"
-        android:textColor="#8d0000"
-        android:text="Realizar pedido"
-        android:padding="12dp"
-        android:textSize="18sp" />
+            android:layout_marginTop="40dp"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#8D0000"
+            android:textSize="16sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnVoltar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="#ffffff"
-            android:textColor="#8d0000"
-            android:text="Retornar"
-            android:padding="12dp"
-            android:textSize="18sp" />
-
+            android:text="Voltar"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#8D0000"
+            android:textSize="16sp" />
     </LinearLayout>
 </ScrollView>
