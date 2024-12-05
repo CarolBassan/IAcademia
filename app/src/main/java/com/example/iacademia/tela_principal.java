@@ -1,5 +1,6 @@
 package com.example.iacademia;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +15,17 @@ public class tela_principal extends AppCompatActivity {
         setContentView(R.layout.activity_tela_principal);
         bttreinos = findViewById(R.id.bttreinos);
         btsair = findViewById(R.id.btsair);
-
+        bttreinos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), tela_treinos.class);
+                startActivity(i);
+            }
+        });
         btsair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+             finish();
             };
         });
     }
