@@ -7,7 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class tela_principal extends AppCompatActivity {
-    Button bttreinos, btsair;
+    Button bttreinos, btsair , btfeedback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +15,7 @@ public class tela_principal extends AppCompatActivity {
         setContentView(R.layout.activity_tela_principal);
         bttreinos = findViewById(R.id.bttreinos);
         btsair = findViewById(R.id.btsair);
+        btfeedback = findViewById(R.id.btfeedback);
         bttreinos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -22,6 +23,15 @@ public class tela_principal extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        btfeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), tela_feedback.class);
+                startActivity(i);
+            }
+        });
+
         btsair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

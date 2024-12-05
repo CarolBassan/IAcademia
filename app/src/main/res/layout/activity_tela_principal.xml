@@ -197,6 +197,21 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
+
+    <Button
+        android:id="@+id/btfeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40sp"
+        android:layout_marginEnd="40sp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:padding="6dp"
+        android:text="Adicionar Feedback"
+        android:textColor="#8d0000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/btsair"
         android:layout_width="match_parent"
@@ -210,5 +225,4 @@
         android:textColor="#8d0000"
         android:textSize="16sp"
         android:textStyle="bold" />
-
 </LinearLayout>
