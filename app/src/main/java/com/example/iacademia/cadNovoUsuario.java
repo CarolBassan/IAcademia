@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import org.json.JSONObject;
-import java.net.URLEncoder;
-import java.util.Iterator;
 
 public class cadNovoUsuario extends AppCompatActivity {
     Button btretorna, btregistra;
@@ -22,7 +21,6 @@ public class cadNovoUsuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cad_novo_usuario);
-
         btretorna = findViewById(R.id.btregretornar);
         btregistra = findViewById(R.id.btregregistrar);
         edtlogin = findViewById(R.id.edtreglogin);
@@ -65,8 +63,10 @@ public class cadNovoUsuario extends AppCompatActivity {
                 jsonValores.put("endereco", usrtemp.getEndereco());
                 jsonValores.put("fone", usrtemp.getFone());
                 jsonValores.put("cidade", usrtemp.getCidade());
+
                 conexaouniversal mandar = new conexaouniversal();
                 String mensagem = mandar.postJSONObject(url, jsonValores);
+                Log.d("RespostaServidor", "Resposta: " + mensagem);
                 return mensagem != null ? mensagem : "Erro ao enviar cadastro.";
             } catch (Exception e) {
                 e.printStackTrace();
@@ -77,34 +77,17 @@ public class cadNovoUsuario extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (result == null || result.trim().isEmpty()) {
+            Log.d("CadastroResultado", "Resultado: " + result);
+            if (result != null && result.contains("sucesso")) {
                 Toast.makeText(cadNovoUsuario.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(() -> {
                     Intent intent = new Intent(cadNovoUsuario.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                }, 5000);
+                }, 3000);
             } else {
-                Toast.makeText(cadNovoUsuario.this,"Erro ao realizar cadastro. Tente novamente." , Toast.LENGTH_SHORT).show();
+                Toast.makeText(cadNovoUsuario.this, "Erro ao realizar cadastro. Detalhes: " + result, Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    public String getPostDataString(JSONObject params) throws Exception {
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-        Iterator<String> itr = params.keys();
-        while (itr.hasNext()) {
-            String key = itr.next();
-            Object value = params.get(key);
-            if (first)
-                first = false;
-            else
-                result.append("&");
-            result.append(URLEncoder.encode(key, "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(value.toString(), "UTF-8"));
-        }
-        return result.toString();
     }
 }

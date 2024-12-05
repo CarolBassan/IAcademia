@@ -14,7 +14,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="3dp"
         android:background="@drawable/rounded_scrollview"
         android:padding="16dp">
 
