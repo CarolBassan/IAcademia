@@ -16,8 +16,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            tools:ignore="Instantiatable">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,7 +28,9 @@
             android:exported="false" />
         <activity
             android:name=".cadNovoUsuario"
-            android:exported="false"
-            tools:ignore="Instantiatable" />
+            android:exported="false" />
+        <activity
+            android:name=".tela_treinos"
+            android:exported="false" />
     </application>
 </manifest>
