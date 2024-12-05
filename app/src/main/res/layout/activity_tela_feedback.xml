@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:background="@drawable/backgroudacademia"
     android:padding="16dp"
-    tools:context=".tela_feedback">
+    tools:context=".activity_tela_feedback">
 
     <ScrollView
         android:layout_width="match_parent"

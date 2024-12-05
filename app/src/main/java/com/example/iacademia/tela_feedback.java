@@ -17,8 +17,7 @@ public class tela_feedback extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feedback);
-
+        setContentView(R.layout.activity_tela_feedback);
         etComentario = findViewById(R.id.etComentario);
         etNota = findViewById(R.id.etNota);
         btSalvarFeedback = findViewById(R.id.btnSalvarFeedback);
