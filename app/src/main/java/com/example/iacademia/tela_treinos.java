@@ -47,7 +47,7 @@ public class tela_treinos extends AppCompatActivity {
                     return "Por favor, preencha todos os campos.";
                 }
 
-                String url = "http://192.167.253.165/academia/cadastra_treino.php";
+                String url = "http://192.168.1.102/academia/cadastra_treino.php";
                 JSONObject jsonValores = new JSONObject();
                 jsonValores.put("id_usuario", 1);
                 jsonValores.put("nome_exercicio", etNomeExercicio.getText().toString());
