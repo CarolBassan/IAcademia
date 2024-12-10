@@ -58,6 +58,7 @@ public class tela_feedback extends AppCompatActivity {
             super.onPostExecute(result);
             if (result != null && !result.equals("Erro ao salvar feedback.")) {
                 Toast.makeText(tela_feedback.this, "Feedback salvo com sucesso!", Toast.LENGTH_SHORT).show();
+                finish();
             } else {
                 Toast.makeText(tela_feedback.this, result, Toast.LENGTH_SHORT).show();
             }
