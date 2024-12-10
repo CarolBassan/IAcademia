@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... arg0) {
             try {
-                String url = "http://192.168.1.102/academia/consulta_login.php";
+                String url = "http://192.167.253.165/academia/consulta_login.php";
                 JSONObject jsonValores = new JSONObject();
                 jsonValores.put("login", edtlogin.getText().toString());
                 jsonValores.put("senha", edtsenha.getText().toString());

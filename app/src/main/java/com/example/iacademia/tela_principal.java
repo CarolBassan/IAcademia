@@ -16,6 +16,7 @@ public class tela_principal extends AppCompatActivity {
         bttreinos = findViewById(R.id.bttreinos);
         btsair = findViewById(R.id.btsair);
         btfeedback = findViewById(R.id.btfeedback);
+
         bttreinos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
