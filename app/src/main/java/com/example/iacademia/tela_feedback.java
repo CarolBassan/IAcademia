@@ -3,6 +3,7 @@ package com.example.iacademia;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -38,15 +39,16 @@ public class tela_feedback extends AppCompatActivity {
                 if (!validaCampos()) {
                     return "Por favor, preencha todos os campos.";
                 }
-
                 String url = "http://192.167.253.165/academia/cadastra_feedback.php";
                 JSONObject jsonValores = new JSONObject();
                 jsonValores.put("id_usuario", 1);
                 jsonValores.put("comentario", etComentario.getText().toString());
                 jsonValores.put("nota", Integer.parseInt(etNota.getText().toString()));
-                conexaouniversal mandar = new conexaouniversal();
-                return mandar.postJSONObject(url, jsonValores);
 
+                conexaouniversal mandar = new conexaouniversal();
+                String mensagem = mandar.postJSONObject(url, jsonValores);
+                Log.d("RespostaServidor", "Resposta: " + mensagem);
+                return mensagem != null ? mensagem : "Erro ao salvar feedback.";
             } catch (Exception e) {
                 e.printStackTrace();
                 return "Erro ao salvar feedback.";
@@ -58,7 +60,6 @@ public class tela_feedback extends AppCompatActivity {
             super.onPostExecute(result);
             if (result != null && !result.equals("Erro ao salvar feedback.")) {
                 Toast.makeText(tela_feedback.this, "Feedback salvo com sucesso!", Toast.LENGTH_SHORT).show();
-                finish();
             } else {
                 Toast.makeText(tela_feedback.this, result, Toast.LENGTH_SHORT).show();
             }
