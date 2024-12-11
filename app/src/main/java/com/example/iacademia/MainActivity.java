@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button btlogar;
     TextView linkregistro;
     EditText edtlogin, edtsenha;
+    String txtretorno = "";
     String login = "";
     String senha = "";
     int userId = -1;
@@ -26,20 +27,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        edtlogin = findViewById(R.id.edtusr);
-        edtsenha = findViewById(R.id.edtsenha);
-        btlogar = findViewById(R.id.btlogar);
-
+        edtlogin = (EditText) findViewById(R.id.edtusr);
+        edtsenha = (EditText) findViewById(R.id.edtsenha);
+        btlogar = (Button) findViewById(R.id.btlogar);
         btlogar.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 new EnviajsonpostLogineSenha().execute();
             }
         });
-
-        linkregistro = findViewById(R.id.linkCriaConta);
+        linkregistro = (TextView) findViewById(R.id.linkCriaConta);
         linkregistro.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), cadNovoUsuario.class);
@@ -56,33 +56,37 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject jsonValores = new JSONObject();
                 jsonValores.put("login", edtlogin.getText().toString());
                 jsonValores.put("senha", edtsenha.getText().toString());
-
                 conexaouniversal mandar = new conexaouniversal();
                 String mensagem = mandar.postJSONObject(url, jsonValores);
-
                 try {
                     JSONObject jsonobjc = new JSONObject(mensagem);
                     JSONArray jsonvet = jsonobjc.getJSONArray("usuario");
-
                     for (int i = 0; i < jsonvet.length(); i++) {
                         JSONObject jsonitem = jsonvet.getJSONObject(i);
-                        login = jsonitem.optString("nome");
-                        senha = jsonitem.optString("senha");
+                        login = jsonitem.optString("nome").toString();
+                        senha = jsonitem.optString("senha").toString();
                         userId = jsonitem.optInt("id");
                     }
-
                     if (edtlogin.getText().toString().equals(login) && edtsenha.getText().toString().equals(senha)) {
-                        Intent i = new Intent(getApplicationContext(), tela_feedback.class);
+                        Intent i = new Intent(getApplicationContext(), tela_principal.class);
                         i.putExtra("USER_ID", userId);
                         startActivity(i);
                     } else {
-                        runOnUiThread(() -> Toast.makeText(MainActivity.this, "Login ou senha incorretos!", Toast.LENGTH_SHORT).show());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this,"Login ou senha incorretos!" , Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-
                 } catch (Exception ex) {
-                    runOnUiThread(() -> Toast.makeText(MainActivity.this, "Problemas ao tentar conectar", Toast.LENGTH_LONG).show());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Problemas ao tentar conectar", Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -23,7 +23,7 @@ public class tela_feedback extends AppCompatActivity {
         etNota = findViewById(R.id.etNota);
         btSalvarFeedback = findViewById(R.id.btnSalvarFeedback);
         btRetornar = findViewById(R.id.btnVoltarFeedback);
-        userId = getIntent().getIntExtra("USER_ID", -1);
+        userId = getIntent().getIntExtra("USER_ID", 2);
 
         if (userId == -1) {
             Toast.makeText(this, "Erro ao carregar dados do usuário.", Toast.LENGTH_SHORT).show();
